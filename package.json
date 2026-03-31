@@ -1,0 +1,29 @@
+{
+  "name": "happies-server",
+  "version": "1.0.0",
+  "description": "Happies server code",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migration:up": "npx sequelize-cli db:migrate",
+    "migration:down": "npx sequelize-cli db:migrate:undo",
+    "migration:create": "npx sequelize-cli migration:generate",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "mysql"
+  ],
+  "author": "Nurtaj & Azad",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.20.0",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.5"
+  }
+}

@@ -1,0 +1,26 @@
+const path = require("path");
+
+module.exports = {
+  config: path.resolve("config", "database.cjs"),
+  "models-path": path.resolve("db", "models"),
+  "migrations-path": path.resolve("db", "migrations"),
+};
+
+/*
+  HOW TO CONFIGURE SEQUELIZE FOR DB MIGRATION
+
+  1. Create a .sequelizerc file in root directory
+  2. Set config, model-path and migrations-path directory inside .sequelizerc file
+    a. config - indicates where db configuration(host, username, password, database etc) lives 
+    b. model-path - indicates where db models(object map of db table) lives
+    c. migrations-path - indicates where db migrations lives
+  3. Set configuration values inside config file
+  4. Run 'npx sequelize-cli migration:generate --name YOUR_MIGRATION_NAME. This will create a file under migrations-path folder.
+    a. Inside newly created migration file, there will be two function, 'up' and 'down'
+    b. 'up' function is used for writing db changes
+    c. 'down' function is used for reverting db changes made by 'up' function
+  5. Write your migration changes inside 'up' function
+  6. Now run the migration with 'npx sequelize-cli db:migrate' command. Check db(in dbeaver) to confirm that db changes actually happened.
+  7. To revert a migration run 'npx sequelize-cli db:migrate:down'
+
+*/
