@@ -3,7 +3,9 @@ import { db } from "./db/db.js";
 import postRouter from "./routes/post.routes.js";
 
 const app = express();
-const port = 5000;
+const port = 8000;
+
+app.use(express.json());
 
 try {
   await db.authenticate();
@@ -18,6 +20,10 @@ app.use(postRouter);
 // app.get("/", (req, res) => {
 //   res.send("Hello World!");
 // });
+
+app.use((err, req, res, next) => {
+  return res.status(500).json({ message: "Something went wrong!" });
+});
 
 app.listen(port, () => {
   console.log(`Our HAPPIES is listening on port ${port}`);
