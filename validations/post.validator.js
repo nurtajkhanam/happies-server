@@ -1,4 +1,4 @@
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 
 export const createPostValidation = () => {
   return [
@@ -16,5 +16,17 @@ export const createPostValidation = () => {
       .bail()
       .isLength({ min: 2, max: 10000 })
       .withMessage("Invalid description character limit"),
+  ];
+};
+
+export const getPostByIdValidation = () => {
+  return [
+    param("postId")
+      .trim()
+      .notEmpty()
+      .withMessage("Please provide a postId")
+      .bail()
+      .isInt({ gt: 0 })
+      .withMessage("PostId must be a valid number"),
   ];
 };

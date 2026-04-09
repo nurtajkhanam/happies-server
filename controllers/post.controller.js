@@ -2,12 +2,6 @@ import Post from "../db/models/post.model.js";
 
 export const CreatePost = async (req, res) => {
   try {
-    /*
-      1. Validate user input from req.body - done
-      2. Create a new post in db using sequelize post model
-      3. Send success response to client
-    */
-
     const { title, description } = req.body;
 
     await Post.create({ title, description });
@@ -27,8 +21,33 @@ export const GetAllPosts = async (req, res) => {
     });
 
     return res.status(200).json({
-      message: "Post fetched successfully",
+      message: "Posts fetched successfully",
       posts,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const GetPostById = async (req, res) => {
+  try {
+    const { postId } = req.params;
+
+    const post = await Post.findByPk(postId, {
+      attributes: { exclude: ["updatedAt", "deletedAt"] },
+    });
+
+    let message = "Post fetched successfully";
+    let status = 200;
+
+    if (!post) {
+      message = "Post not found";
+      status = 404;
+    }
+
+    return res.status(status).json({
+      message,
+      post,
     });
   } catch (error) {
     throw error;
