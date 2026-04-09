@@ -1,4 +1,4 @@
-import { db } from "../db";
+import { db } from "../db.js";
 import { DataTypes } from "sequelize";
 
 const Post = db.define(
@@ -16,6 +16,8 @@ const Post = db.define(
   {
     timestamps: true,
     paranoid: true,
+    tableName: "posts",
+    // underscored: true,
   },
 );
 
