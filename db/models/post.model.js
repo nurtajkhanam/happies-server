@@ -17,7 +17,7 @@ const Post = db.define(
     timestamps: true,
     paranoid: true,
     tableName: "posts",
-    // underscored: true,
+    underscored: true,
   },
 );
 

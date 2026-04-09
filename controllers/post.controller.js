@@ -19,3 +19,18 @@ export const CreatePost = async (req, res) => {
     throw error;
   }
 };
+
+export const GetAllPosts = async (req, res) => {
+  try {
+    const posts = await Post.findAll({
+      attributes: { exclude: ["updatedAt", "deletedAt"] },
+    });
+
+    return res.status(200).json({
+      message: "Post fetched successfully",
+      posts,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
