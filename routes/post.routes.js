@@ -4,7 +4,7 @@
 // PATCH /post/:postId - update a post
 
 import { Router } from "express";
-import { CreatePost } from "../controllers/post.controller.js";
+import { CreatePost, GetAllPosts } from "../controllers/post.controller.js";
 import { createPostValidation } from "../validations/post.validator.js";
 import { FormatValidationErrMiddleware } from "../middlewares/validation.middleware.js";
 
@@ -16,5 +16,7 @@ postRouter.post(
   FormatValidationErrMiddleware,
   CreatePost,
 );
+
+postRouter.get("/posts", GetAllPosts);
 
 export default postRouter;
